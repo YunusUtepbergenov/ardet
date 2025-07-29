@@ -18,7 +18,7 @@ class ProductList extends Component
     public function render()
     {
         return view('livewire.product-list', [
-            'products' => Product::take($this->perPage)->get(),
+            'products' => Product::latest()->take($this->perPage)->get(),
             'totalCount' => Product::count(),
         ]);
     }

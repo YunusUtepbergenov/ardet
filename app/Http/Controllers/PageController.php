@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $products = Product::all(); // or paginate if needed
+        $products = Product::all();
         return view('home', compact('products'));
     }
 }

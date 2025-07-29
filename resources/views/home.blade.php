@@ -43,30 +43,34 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <a href="/" class="logo d-flex align-items-center me-auto">
         <img src="{{ asset('img/logo.png') }}" alt="Logo">
       </a>
 
-        <nav id="navmenu" class="navmenu d-flex align-items-center gap-3">
-            <ul class="d-flex mb-0 align-items-center list-unstyled">
-                <li><a href="#hero" class="active">{{ __('nav.home') }}</a></li>
-                <li><a href="#services">{{ __('nav.advantages') }}</a></li>
-                <li><a href="#portfolio">{{ __('nav.products') }}</a></li>
-                <li><a href="#contact">{{ __('nav.contacts') }}</a></li>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                  {{ app()->getLocale() === 'ru' ? '🇷🇺 Русский' : '🇺🇿 Oʻzbek' }}
-                  </button>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ route('lang.switch', 'ru') }}">🇷🇺 Русский</a></li>
-                      <li><a class="dropdown-item" href="{{ route('lang.switch', 'uz') }}">🇺🇿 Oʻzbek</a></li>
-                  </ul>
-            </div>
-            </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+      <!-- Hidden checkbox to toggle nav -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="mobile-nav-toggle">
+          <i class="bi bi-list"></i>
+      </label>
+
+      <nav class="navmenu d-flex align-items-center gap-3">
+        <ul class="d-flex mb-0 align-items-center list-unstyled">
+          <li><a href="#hero" class="active">{{ __('nav.home') }}</a></li>
+          <li><a href="#services">{{ __('nav.advantages') }}</a></li>
+          <li><a href="#portfolio">{{ __('nav.products') }}</a></li>
+          <li><a href="#contact">{{ __('nav.contacts') }}</a></li>
+
+          <li class="dropdown lang-dropdown">
+            <select class="selectpicker" data-width="fit" onchange="window.location.href=this.value;">
+              <option value="{{ route('lang.switch', 'ru') }}" {{ app()->getLocale() == 'ru' ? 'selected' : '' }}>🇷🇺 Русский</option>
+              <option value="{{ route('lang.switch', 'uz') }}" {{ app()->getLocale() == 'uz' ? 'selected' : '' }}>🇺🇿 Oʻzbek</option>
+            </select>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
+
 
   <main class="main">
 
@@ -291,6 +295,7 @@
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    @livewireScripts
 
     <script>
       const lat = 39.091796;
@@ -307,10 +312,12 @@
       L.marker([lat, lng]).addTo(map)
         .bindPopup("<b>Ardet.</b>")
         .openPopup();
+
+        $(function() {
+    $('.selectpicker').selectpicker();
+    $('pick__lang').selectpicker();
+});
     </script>
-
-    @livewireScripts
-
 </body>
 
 </html>
