@@ -18,6 +18,9 @@ Route::get('/lang/{locale}', function ($locale) {
 Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/admin/products/store', [ProductController::class, 'store'])->name('products.store');
 
+Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit'); // Show edit form
+Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('products.update');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

@@ -37,4 +37,39 @@ class ProductController extends Controller
 
         return redirect()->route('products.create')->with('success', 'Продукт добавлен!');
     }
+
+    public function edit(Product $product)
+    {
+        return view('admin.products.edit', compact('product'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'title.ru' => 'required|string|max:255',
+            'title.uz' => 'required|string|max:255',
+            'short_desc.ru' => 'nullable|string',
+            'short_desc.uz' => 'nullable|string',
+            'category' => 'nullable|string|max:50',
+            'image' => 'nullable|image|max:20480',
+        ]);
+
+        $data = [
+            'title' => $request->input('title'),
+            'short_desc' => $request->input('short_desc'),
+            'category' => $request->input('category'),
+        ];
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = 'catalog/' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/catalog'), basename($filename));
+            $data['image'] = 'img/' . $filename;
+        }
+
+        $product->update($data);
+
+        return redirect()->route('products.edit', $product->id)->with('success', 'Продукт обновлён!');
+    }
+
 }
