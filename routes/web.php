@@ -21,6 +21,8 @@ Route::post('/admin/products/store', [ProductController::class, 'store'])->name(
 Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit'); // Show edit form
 Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('products.update');
 
+Route::get('/categories/{category}', [ProductController::class, 'showByCategory'])->name('categories.show');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

@@ -35,6 +35,13 @@
       height: 400px;
       width: 100%;
     }
+
+    .index-page .header {
+    position: relative;
+    --background-color: #37517e;
+    --heading-color: #ffffff;
+    --nav-color: #ffffff;
+    }
   </style>
 </head>
 
@@ -55,9 +62,9 @@
 
       <nav class="navmenu d-flex align-items-center gap-3">
         <ul class="d-flex mb-0 align-items-center list-unstyled">
-          <li><a href="#hero" class="active">{{ __('nav.home') }}</a></li>
-          <li><a href="#services">{{ __('nav.advantages') }}</a></li>
-          <li><a href="#portfolio">{{ __('nav.products') }}</a></li>
+          <li><a href="{{route('home')}}/#home" class="active">{{ __('nav.home') }}</a></li>
+          <li><a href="{{route('home')}}/#services">{{ __('nav.advantages') }}</a></li>
+          <li><a href="{{route('home')}}/#portfolio">{{ __('nav.products') }}</a></li>
 
           <li class="dropdown"><a href="#"><span>Категории</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
@@ -68,8 +75,7 @@
             </ul>
           </li>
 
-          <li><a href="#contact">{{ __('nav.contacts') }}</a></li>
-
+          <li><a href="{{route('home')}}/#contact">{{ __('nav.contacts') }}</a></li>
           <li class="dropdown lang-dropdown">
             <select class="selectpicker" data-width="fit" onchange="window.location.href=this.value;">
               <option value="{{ route('lang.switch', 'ru') }}" {{ app()->getLocale() == 'ru' ? 'selected' : '' }}>🇷🇺 Русский</option>
@@ -84,165 +90,40 @@
 
   <main class="main">
 
-    <section id="hero" class="hero section dark-background">
-
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <h1>{{__('hero.heading')}}</h1>
-            <p>{{__('hero.text')}}</p>
-          </div>
-          <div class="col-lg-7 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
-            <img src="/img/Untitled design.png" class="img-fluid animated" alt="Hero Image">
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services section light-background">
+    <section class="portfolio section">
 
       <div class="container section-title" data-aos="fade-up">
-        <h2>{{__('nav.advantages')}}</h2>
+        @if($category === 'mix_dry')
+            <h2>Сухие смеси</h2>
+        @elseif ($category === 'colors')
+            <h2>Краски</h2>
+        @elseif ($category === 'primers')
+            <h2>Грунтовки</h2>
+        @elseif ($category === 'fixbeton')
+            <h2>Бетонконтакты</h2>        
+        @endif
       </div>
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-building"></i></div>
-              <h4><a href="" class="stretched-link">{{__('advantages.heading1')}}</a></h4>
-              <p>{{__('advantages.heading1_text')}}</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-thermometer-sun icon"></i></div>
-              <h4><a href="" class="stretched-link">{{__('advantages.heading2')}}</a></h4>
-              <p>{{__('advantages.heading2_text')}}</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-patch-check icon"></i></div>
-              <h4><a href="" class="stretched-link">{{__('advantages.heading3')}}</a></h4>
-              <p>{{__('advantages.heading3_text')}}</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-tools icon"></i></div>
-              <h4><a href="" class="stretched-link">{{__('advantages.heading4')}}</a></h4>
-              <p>{{__('advantages.heading4_text')}}</p>
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
-
-    <section id="portfolio" class="portfolio section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{{__('nav.products')}}</h2>
-      </div><!-- End Section Title -->
 
       <div class="container">
 
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
-          <livewire:product-list />
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{{__('nav.contacts')}}</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <div class="col-lg-5">
-            <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>{{__('contact.address_h')}}</h3>
-                  <p>{{__('contact.address')}}</p>
-                </div>
-              </div><!-- End Info Item -->
-      
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>{{__('contact.phone')}}</h3>
-                  <p>+998 90 864 00 07</p> <!-- Change to your real number -->
-                </div>
-              </div><!-- End Info Item -->
-      
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>{{__('contact.email')}}</h3>
-                  <p>info@example.com</p>
-                </div>
-              </div><!-- End Info Item -->
-              <div id="map"></div>
-              {{-- <iframe src="" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
+            <div class="row gy-4 isotope-container">
+                @foreach($products as $product)
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ $product->category }}">
+                        <img src="{{ asset($product->image) }}" class="img-fluid" alt="Образцы строительных материалов от Ardet">
+                        <div class="portfolio-info">
+                            <h4>{{ $product->getTranslated('title') }}</h4>
+                            <p>{{ $product->getTranslated('short_desc') }}</p>
+                            <a href="{{ asset($product->image) }}" data-gallery="portfolio-gallery-{{ $product->category }}" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        </div>
+                    </div>
+                @endforeach        
             </div>
-          </div>
-      
-          <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">{{__('contact.name')}}</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
-                </div>
-      
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">{{__('contact.email_m')}}</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
-                </div>
-      
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">{{__('contact.theme')}}</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
-      
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">{{__('contact.message')}}</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-      
-                <div class="col-md-12 text-center">
-                  <div class="loading">Загрузка...</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Ваше сообщение отправлено. Спасибо!</div>
-      
-                  <button type="submit">{{__('contact.send_message')}}</button>
-                </div>
-              </div>
-            </form>
-          </div>
         </div>
+
       </div>
+
     </section>
 
   </main>

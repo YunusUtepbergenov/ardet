@@ -72,4 +72,13 @@ class ProductController extends Controller
         return redirect()->route('products.edit', $product->id)->with('success', 'Продукт обновлён!');
     }
 
+
+     public function showByCategory($category)
+    {
+        $products = Product::where('category', $category)->get();
+        return view('products.category', [
+            'products' => $products,
+            'category' => $category
+        ]);
+    }
 }
