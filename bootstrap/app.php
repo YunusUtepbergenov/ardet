@@ -15,10 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->append(StartSession::class);
-        $middleware->append(ShareErrorsFromSession::class);
-        $middleware->append(VerifyCsrfToken::class);
-        $middleware->append(SetLocale::class);
+        $middleware->web([
+            StartSession::class,
+            ShareErrorsFromSession::class,
+            VerifyCsrfToken::class,
+            SetLocale::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

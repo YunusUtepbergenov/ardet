@@ -47,24 +47,23 @@
         <img src="{{ asset('img/logo.png') }}" alt="Logo">
       </a>
 
-      <!-- Hidden checkbox to toggle nav -->
       <input type="checkbox" id="menu-toggle" class="menu-toggle">
       <label for="menu-toggle" class="mobile-nav-toggle">
           <i class="bi bi-list"></i>
       </label>
 
-      <nav class="navmenu d-flex align-items-center gap-3">
+      <nav class="navmenu d-flex align-items-center gap-2">
         <ul class="d-flex mb-0 align-items-center list-unstyled">
-          <li><a href="#hero" class="active">{{ __('nav.home') }}</a></li>
+          {{-- <li><a href="#hero" class="active">{{ __('nav.home') }}</a></li> --}}
           <li><a href="#services">{{ __('nav.advantages') }}</a></li>
           <li><a href="#portfolio">{{ __('nav.products') }}</a></li>
 
-          <li class="dropdown"><a href="#"><span>Категории</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="#"><span>{{__('nav.catalog')}}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="{{route('categories.show', 'mix_dry')}}">Сухие смеси</a></li>
-              <li><a href="{{route('categories.show', 'colors')}}">Краски</a></li>
-              <li><a href="{{route('categories.show', 'primers')}}">Грунтовки</a></li>
-              <li><a href="{{route('categories.show', 'fixbeton')}}">Бетонконтакты</a></li>
+              <li><a href="{{route('categories.show', 'mix_dry')}}">{{__('nav.mix_dry')}}</a></li>
+              <li><a href="{{route('categories.show', 'colors')}}">{{__('nav.colors')}}</a></li>
+              <li><a href="{{route('categories.show', 'primers')}}">{{__('nav.primers')}}</a></li>
+              <li><a href="{{route('categories.show', 'fixbeton')}}">{{__('nav.fixbeton')}}</a></li>
             </ul>
           </li>
 

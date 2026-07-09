@@ -362,12 +362,10 @@ h6 {
   }
 }
 
-/* Hide checkbox */
 .menu-toggle {
   display: none;
 }
 
-/* Style hamburger icon */
 .mobile-nav-toggle {
   font-size: 28px;
   cursor: pointer;
@@ -376,16 +374,14 @@ h6 {
   z-index: 1001;
 }
 
-/* Show hamburger only on mobile */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
     display: block;
     position: absolute;
-    right: 20px; /* Move to right corner */
+    right: 20px;
     z-index: 1001;
   }
 
-  /* Initially hide nav menu */
   .navmenu ul {
     display: none;
     flex-direction: column;
@@ -401,13 +397,11 @@ h6 {
     transition: transform 0.3s ease-in-out;
   }
 
-  /* When checkbox is checked, show menu */
   .menu-toggle:checked ~ .navmenu > ul {
       display: flex;
       transform: translateX(0);
   }
 
-  /* Overlay effect */
   .menu-toggle:checked ~ .navmenu::before {
     content: "";
     position: fixed;
@@ -416,7 +410,6 @@ h6 {
     z-index: -1;
   }
 
-  /* Nav links style */
   .navmenu ul li {
     margin: 10px 0;
   }
@@ -427,39 +420,17 @@ h6 {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-/* Language dropdown closed by default */
-.lang-dropdown ul {
-  display: none;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 10px 0;
-  margin-top: 5px;
-}
+  .lang-dropdown ul {
+    display: none;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 0;
+    margin-top: 5px;
+  }
 
-/* Show dropdown when button is focused (clicked) */
-.lang-dropdown:focus-within ul {
-  display: flex;
-}
-
-/* Style the language button */
-.lang-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 17px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px;
-  cursor: pointer;
-}
-
-/* Optional: Close dropdown when clicking elsewhere */
-.lang-dropdown ul li a {
-  padding: 10px 20px;
-  color: #fff;
-}
+  .lang-dropdown:focus-within ul {
+    display: flex;
+  }
 
 }
 

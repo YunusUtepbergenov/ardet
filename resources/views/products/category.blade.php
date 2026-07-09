@@ -66,12 +66,12 @@
           <li><a href="{{route('home')}}/#services">{{ __('nav.advantages') }}</a></li>
           <li><a href="{{route('home')}}/#portfolio">{{ __('nav.products') }}</a></li>
 
-          <li class="dropdown"><a href="#"><span>Категории</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="#"><span>{{__('nav.catalog')}}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="{{route('categories.show', 'mix_dry')}}">Сухие смеси</a></li>
-              <li><a href="{{route('categories.show', 'colors')}}">Краски</a></li>
-              <li><a href="{{route('categories.show', 'primers')}}">Грунтовки</a></li>
-              <li><a href="{{route('categories.show', 'fixbeton')}}">Бетонконтакты</a></li>
+              <li><a href="{{route('categories.show', 'mix_dry')}}">{{__('nav.mix_dry')}}</a></li>
+              <li><a href="{{route('categories.show', 'colors')}}">{{__('nav.colors')}}</a></li>
+              <li><a href="{{route('categories.show', 'primers')}}">{{__('nav.primers')}}</a></li>
+              <li><a href="{{route('categories.show', 'fixbeton')}}">{{__('nav.fixbeton')}}</a></li>
             </ul>
           </li>
 
@@ -94,13 +94,13 @@
 
       <div class="container section-title" data-aos="fade-up">
         @if($category === 'mix_dry')
-            <h2>Сухие смеси</h2>
+            <h2>{{__('nav.mix_dry')}}</h2>
         @elseif ($category === 'colors')
-            <h2>Краски</h2>
+            <h2>{{__('nav.colors')}}</h2>
         @elseif ($category === 'primers')
-            <h2>Грунтовки</h2>
+            <h2>{{__('nav.primers')}}</h2>
         @elseif ($category === 'fixbeton')
-            <h2>Бетонконтакты</h2>        
+            <h2>{{__('nav.fixbeton')}}</h2>        
         @endif
       </div>
 
